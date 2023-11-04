@@ -34,4 +34,23 @@ public class Solution {
         else left = midIndex + 1;
         return bSearchMissingNumber(nums, left, right);
     }
+    public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+        int count = 0;
+        int i = 0;
+        return findByRecursion(arr1, arr2, d, count, i);
+    }
+    public int findByRecursion(int[] arr1, int[] arr2, int d, int count, int i) {
+        int countNum = 0;
+        if (i == arr1.length) {
+            return count;
+        }
+        for(int j = 0; j < arr2.length; j++) {
+            if(Math.abs(arr1[i] - arr2[j]) <= d) {
+                countNum++;
+                break;
+            }
+        }
+        if(countNum == 0) count++;
+        return findByRecursion(arr1, arr2, d, count, ++i);
+    }
 }
