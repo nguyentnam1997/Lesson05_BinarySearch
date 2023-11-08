@@ -53,7 +53,8 @@
       <option name="presentableId" value="Default" />
       <updated>1698985293671</updated>
       <workItem from="1698985295086" duration="10657000" />
-      <workItem from="1699070809588" duration="1594000" />
+      <workItem from="1699070809588" duration="1680000" />
+      <workItem from="1699426521577" duration="1110000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -63,7 +64,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699007044769</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="123">
+      <option name="closed" value="true" />
+      <created>1699073118708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699073118708</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -74,22 +83,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="123" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Solution.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Solution.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/Solution.java" line="11">
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/Solution.java" line="13">
         <watch expression="midIndex" language="JAVA" />
       </inline-watch>
     </watches-manager>
