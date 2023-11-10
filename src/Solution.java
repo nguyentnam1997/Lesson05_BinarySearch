@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Solution {
@@ -55,23 +56,66 @@ public class Solution {
         if(countNum == 0) count++;
         return findByRecursion(arr1, arr2, d, count, ++i);
     }
+    public int[] sortArrayByMergeSort(int[] nums) {
+        return mergeSort(nums, 0, nums.length - 1);
+    }
+
+    public int[] mergeSort(int[] nums, int left, int right) {
+        //1. Chia ra
+        if (left == right) {
+            return new int[]{nums[left]};
+        }
+        int mid = left + (right - left) / 2;
+        int[] arr1 = mergeSort(nums, left, mid);
+        int[] arr2 = mergeSort(nums, mid + 1, right);
+
+        //2. Trộn vào
+        return merge(arr1, arr2);
+    }
+
+    public int[] merge(int[] arr1, int[] arr2) {
+        int n = arr1.length + arr2.length;
+        int[] result = new int[n];
+        int i = 0, i1 = 0, i2 = 0;
+        while (i < n) {
+            if (i1 < arr1.length && i2 < arr2.length) {
+                if (arr1[i1] < arr2[i2]) {
+                    result[i++] = arr1[i1++];
+                } else {
+                    result[i++] = arr2[i2++];
+                }
+            } else {
+                if (i1 < arr1.length) {
+                    result[i++] = arr1[i1++];
+                }
+
+                if (i2 < arr2.length) {
+                    result[i++] = arr2[i2++];
+                }
+            }
+        }
+        return result;
+    }
     public int longestSquareStreak(int[] nums) {
         if (nums.length < 2) return -1;
-        Arrays.sort(nums);
+        //Arrays.sort(nums);
+        sortArrayByMergeSort(nums);
         List<Integer> numsList = new ArrayList<>();
-        for(int num: nums) {
-            numsList.add(num);
-        }
+        Collections.addAll(numsList, Arrays.stream(nums).boxed().toArray(Integer[]::new));
+//        for(int num: nums) {
+//            numsList.add(num);
+//        }
         //numsList.addAll(Arrays.asList(nums));
         int count = 1;  //biến lưu trữ kết quả sau mỗi lần lặp để so sánh với maxResult
         int maxResult = 1;  //biến return kquả cao nhất
         int i = 0;  //biến index chạy từ đầu
-        int iValue = nums[i];   //giá trị tại biến index
-        return recursion(numsList, i,iValue, count, maxResult);
+        //int iValue = nums[i];   //giá trị tại biến index
+        return recursion(numsList, i, count, maxResult);
     }
     //2 3 4 6 8 16
     //2 3 6 9 16
-    public int recursion(List<Integer> numsList, int i, int iValue, int count, int maxResult) {
+    public int recursion(List<Integer> numsList, int i, int count, int maxResult) {
+        //if(Math.pow(numsList.get(0), 2) > numsList.get(numsList.size() - 1)) return - 1;
         if (count > maxResult) {
             maxResult = count;
         }
@@ -82,6 +126,7 @@ public class Solution {
             if (maxResult == 1) return -1;
             return maxResult;
         }
+        int iValue = numsList.get(i);
         count = 1; //sau mỗi lần đệ quy, thì count sẽ quay về 1
         int square = (int) Math.pow(iValue, 2);     //biến tính bình phương tại index i
         for(int j = i + 1; j < numsList.size(); ) {
@@ -91,12 +136,13 @@ public class Solution {
             }
             if (square == numsList.get(j)) {
                 iValue = numsList.get(j);
+                square = (int) Math.pow(iValue, 2);
                 numsList.remove(j);
                 count++;
             }
             else j++;
         }
         //i++;
-        return recursion(numsList, i + 1, iValue, count, maxResult);
+        return recursion(numsList, i + 1, count, maxResult);
     }
 }
